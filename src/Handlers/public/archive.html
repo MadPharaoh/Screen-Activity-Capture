@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="Username"></title>
+<style>
+.fullclick li {
+  list-style: none;
+  margin: 25px 25px 25px;
+  padding: 20px 10px;
+  width: 100px;
+  background: #ffffff;
+  display: inline-block;
+  border-color: #000000;
+  position: relative;
+}
+.fullclick a.main {
+  color: #000000;
+  text-align: right;
+  display: block;
+  z-index: 1;
+}
+.fullclick li a.main::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: ' ';
+}
+.file {
+  width: 80px;
+  height: 80px;
+}
+</style>
+</head>
+<body>
+<div">
+<ui class="fullclick" id="card">
+</ui>
+ </div>
+  <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+  <script>
+  var socket = io('http://localhost:3001');
+    socket.on('username', function (username) {
+        document.getElementById("Username").innerHTML = username + 'Logs' 
+    });
+    socket.on('files', function (files) {
+        files.forEach(file => {
+            let card = document.getElementById('card')
+            let img = document.createElement('img')
+            img.setAttribute('src', 'file.png')
+            img.setAttribute('class', 'file')
+            let fig = document.createElement('figcaption')
+            fig.innerHTML = file
+            let href = document.createElement('a')
+            href.setAttribute('onclick' ,`${data()}`)
+            function data() {
+              socket.emit('current-File-Name', file)
+            }
+            href.setAttribute('href',`${window.location.href}/${file}`)
+            href.setAttribute('class', 'main')
+            let li = document.createElement('li')
+            card.appendChild(li)
+            li.appendChild(href)
+            li.appendChild(img)
+            li.appendChild(fig)
+        });
+    })
+</script> 
+</body>
+</html>
