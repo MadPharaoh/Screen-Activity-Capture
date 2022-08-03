@@ -1,0 +1,47 @@
+{
+  "name": "capture-screen",
+  "productName": "Capture Screen",
+  "version": "1.0.0",
+  "description": "Capture GUI apps Working on the Screen send data and screen shots of the Activity timeline",
+  "main": "dist/main/index.js",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/MadPharaoh/Raztor.git"
+  },
+  "scripts": {
+    "postbuild": "cpy src/Handlers/public/*.html ./dist/main/Handlers/public && cpy assets ./dist ",
+    "start": "npm run build && electron ./dist/main/index.js",
+    "build-installer": "electron-builder",
+    "build": "tsc && npm run postbuild",
+    "clean": "rimraf dist *.txt",
+    "release": "npm run build && npm run build-installer"
+  },
+  "author": "MadPharaoh",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/auto-launch": "^5.0.2",
+    "@types/node": "^17.0.36",
+    "@types/socket.io": "^3.0.2",
+    "electron": "^19.0.1",
+    "electron-builder": "^23.0.3",
+    "electron-notarize": "^1.2.1",
+    "electron-packager": "^15.5.1",
+    "ssh2-sftp-client": "^8.1.0",
+    "ts-devscript": "^3.0.6",
+    "typescript": "^4.7.2",
+    "yarn": "^1.22.18"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "auto-launch": "^5.0.5",
+    "cpy-cli": "^4.1.0",
+    "electron-log": "^4.4.7",
+    "electron-updater": "^5.0.1",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "is-online": "^9.0.1",
+    "rimraf": "^3.0.2",
+    "socket.io": "^4.5.1",
+    "source-map-support": "^0.5.21"
+  }
+}

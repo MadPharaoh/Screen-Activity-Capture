@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2018",
+		"moduleResolution": "node",
+		"inlineSourceMap": true,
+		"outDir": "dist/main",
+		"removeComments": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true
+	},
+	"include": ["src/**/*"],
+	"exclude": [
+		"**/node_modules/",
+	]
+}
